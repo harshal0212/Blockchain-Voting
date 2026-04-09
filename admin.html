@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ChainVote — Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="page-bg" aria-hidden="true"></div>
+
+    <header class="site-header">
+        <div class="brand">
+            <div class="brand-mark" aria-hidden="true">◇</div>
+            <div class="brand-text">ChainVote</div>
+        </div>
+        <span class="badge-live">Admin</span>
+    </header>
+
+    <div class="container-fluid-narrow">
+        <a class="back-link" href="index.html">← Back to voter app</a>
+
+        <div class="admin-hero">
+            <h1>Administrator console</h1>
+            <p>Manage candidates and voting window. All actions are signed with your wallet.</p>
+        </div>
+
+        <div id="adminStatus" class="status-bar admin-status-top" role="status" aria-live="polite"></div>
+
+        <section class="panel admin-wallet-panel">
+            <div class="panel-label">Connection</div>
+            <div class="admin-connection-row">
+                <p id="adminWalletLine" class="admin-wallet-line">Checking wallet…</p>
+                <button type="button" id="btnAdminConnect" class="btn-primary-custom btn-connect" onclick="adminConnect()">Connect wallet</button>
+            </div>
+            <p id="adminOwnerHint" class="admin-owner-hint" hidden></p>
+        </section>
+
+        <div class="panel admin-voting-banner">
+            <div class="admin-voting-row">
+                <span class="panel-label mb-0">Voting</span>
+                <span id="votingStateBadge" class="voting-state-badge">…</span>
+            </div>
+            <p class="admin-hint mb-3">Toggle whether voters can submit new votes.</p>
+            <button type="button" class="btn-primary-custom btn-admin-toggle w-100" onclick="toggleVoting()">Start / stop voting</button>
+        </div>
+
+        <div class="admin-actions">
+            <section class="panel">
+                <div class="panel-label">Add candidate</div>
+                <div class="verify-row">
+                    <div class="input-wrap flex-grow-1">
+                        <label for="candidateName" class="visually-hidden">Candidate name</label>
+                        <input id="candidateName" type="text" placeholder="Full name as it should appear on the ballot" autocomplete="off">
+                    </div>
+                    <button type="button" id="btnAddCandidate" class="btn-primary-custom btn-admin-add" onclick="addCandidate()">Add to ballot</button>
+                </div>
+            </section>
+
+            <section class="panel">
+                <div class="section-head admin-ballot-head">
+                    <h2 class="h2-inline">Current ballot</h2>
+                    <span class="section-hint">Remove only if tally is 0</span>
+                </div>
+                <ul id="adminCandidateList" class="admin-candidate-list" aria-label="Candidates on the ballot"></ul>
+                <p id="adminEmptyBallot" class="admin-empty-ballot" hidden>No candidates yet. Add one above.</p>
+            </section>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.8.2/dist/web3.min.js"></script>
+    <script src="contract-config.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+# Secrets — never commit keys or API tokens
+.env
+.env.*
+!.env.example
+
+# If you add Node tooling later
+node_modules/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.log
+.vscode/
+.idea/
+
+# Usually huge; ABI is already in contract-config.js / Remix export
+artifacts/build-info/
